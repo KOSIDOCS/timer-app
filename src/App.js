@@ -7,8 +7,17 @@ import './App.css';
 import NewTimer from './components/new-timer'
 import ListTimers from './list-timers'
 import { update } from './actions/index'
+import { loadState, saveState } from './utils/index'
+import throttle from 'lodash/throttle'
 
-const store = createStore(reducers);
+// const store = createStore(reducers); // Non-persisted state.
+
+// Persisted state
+const persistedState = loadState();
+const store = createStore(reducers, persistedState)
+store.subscribe(throttle(() => {
+  saveState(store.getState())
+}, 1000)) // tell our store to save state every 1000ms using Lodash's throttle method:
 
 let lastUpdateTime = Date.now();
 setInterval(() => {
