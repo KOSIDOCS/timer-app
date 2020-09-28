@@ -1,9 +1,10 @@
 // This component displays a single timer.
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { formatTime } from './utils/index'
 
 // Import our toggleTimer action
-import { toggleTimer } from './actions/index'
+import { toggleTimer, deleteTimer } from './actions/index'
 
 class TimerView extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class TimerView extends Component {
         return (
             <div>
         <h2>{timer.name}</h2>
-        <h1>{timer.time}</h1>
+        <h1>{formatTime(timer.time)}</h1>
         <button
             // This calls our toggleTimer action on the specific timer (specified by the index)
             onClick={(e) => {
@@ -26,6 +27,12 @@ class TimerView extends Component {
             }}>
              {/* Text of the button is determined by if the timer is running or not */}
             {timer.isRunning ? "Stop" : "Start"}
+        </button>
+        
+        <button onClick={(e) => {
+            deleteTimer(index)
+        }}>
+             Delete
         </button>
       </div>
         )
@@ -38,7 +45,7 @@ const mapStateToProps = (state) => {
   
 // Use the toggleTimer action for this component
 const mapDispatchToProps = () => {
-    return { toggleTimer }
+    return { toggleTimer, deleteTimer }
   }
   
   export default connect(mapStateToProps, mapDispatchToProps())(TimerView)  
