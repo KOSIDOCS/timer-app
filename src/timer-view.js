@@ -1,7 +1,7 @@
 // This component displays a single timer.
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatTime } from './utils/index'
+import { formatTime, resetTime } from './utils/index'
 
 // Import our toggleTimer action
 import { toggleTimer, deleteTimer } from './actions/index'
@@ -28,11 +28,18 @@ class TimerView extends Component {
              {/* Text of the button is determined by if the timer is running or not */}
             {timer.isRunning ? "Stop" : "Start"}
         </button>
-        
+
         <button onClick={(e) => {
             deleteTimer(index)
         }}>
              Delete
+        </button>
+
+        <button onClick={(e) => {
+            resetTime(timer.time)
+        }}
+        >
+            reset
         </button>
       </div>
         )
