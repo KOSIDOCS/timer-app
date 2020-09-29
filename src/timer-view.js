@@ -1,7 +1,7 @@
 // This component displays a single timer.
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatTime, resetTime } from './utils/index'
+import { formatTime } from './utils/index'
 import './components/timer-view.css'
 
 // Import our toggleTimer action
