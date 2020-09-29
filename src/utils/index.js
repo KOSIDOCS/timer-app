@@ -34,7 +34,3 @@ export const formatTime = (time) => {
     const hrs = Math.floor(time / 1000 / 1000 / 60) % 60
     return `${hrs}:${mins}:${secs}.${ms}`
 }
-
-export const resetTime = (time) => {
-    return `${'00'}:${'00'}:${'00'}.${'00'}`
-}

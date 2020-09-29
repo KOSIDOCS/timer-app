@@ -5,7 +5,7 @@ import { formatTime, resetTime } from './utils/index'
 import './components/timer-view.css'
 
 // Import our toggleTimer action
-import { toggleTimer, deleteTimer } from './actions/index'
+import { toggleTimer, deleteTimer, reset } from './actions/index'
 
 class TimerView extends Component {
     constructor(props) {
@@ -16,8 +16,9 @@ class TimerView extends Component {
     render() {
 
         // Extract these specific props to use in the component
-        const { index, toggleTimer, timer} = this.props
+        const { index, toggleTimer, deleteTimer, reset, timer} = this.props
         const buttonClass = timer.isRunning ? "stop" : "start";
+       
         return (
             <div className='timer-view'>
         <h2 className='timer-view-name__h2'>{timer.name}</h2>
@@ -31,18 +32,18 @@ class TimerView extends Component {
             {timer.isRunning ? "Stop" : "Start"}
         </button>
 
-        {/* <button onClick={(e) => {
+       <button onClick={(e) => {
             deleteTimer(index)
-        }} className='timer-view-name__button'>
+        }} className='timer-view__button timer-view__button--start'>
              Delete
-        </button>
+        </button> 
 
         <button onClick={(e) => {
-            resetTime(timer.time)
+            reset(index)
         }}
-        className='timer-view-name__button'>
+        className='timer-view__button timer-view__button--start'>
             reset
-        </button> */}
+        </button> 
       </div>
         )
     }
@@ -54,7 +55,7 @@ const mapStateToProps = (state) => {
   
 // Use the toggleTimer action for this component
 const mapDispatchToProps = () => {
-    return { toggleTimer, deleteTimer }
+    return { toggleTimer, deleteTimer, reset }
   }
   
   export default connect(mapStateToProps, mapDispatchToProps())(TimerView)  

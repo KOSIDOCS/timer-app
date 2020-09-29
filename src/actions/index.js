@@ -4,6 +4,7 @@ export const TOGGLE_TIMER = "TOGGLE_TIMER";
 export const SELECT_TIMER = "SELECT_TIMER";
 export const DELETE_TIMER = "DELETE_TIMER";
 export const UPDATE = "UPDATE";
+export const RESET = "RESET";
 
 // action creator and payload with a value.
 export const addTimer = (name) => {
@@ -19,6 +20,12 @@ export const toggleTimer = (index) => {
         payload: { index }
     }
 }
+ export const reset = (index) => {
+     return {
+         type: RESET,
+         payload: { index }
+     }
+ }
 
 export const selectTimer = (index) => {
     return {

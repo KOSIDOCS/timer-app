@@ -10,6 +10,7 @@ class NewTimer extends Component {
         super(props)
         this.state = { name: ""}
     }
+    
 
     render() {
         // Build out a component that takes a name as input and a save button to save the timer
